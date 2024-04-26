@@ -55,14 +55,14 @@ export default async function Dashboard() {
                 className="sm:col-span-2" x-chunk="dashboard-05-chunk-0"
               >
                 <CardHeader className="pb-3">
-                  <CardTitle>Nec Members</CardTitle>
+                  <CardTitle>NEC Members</CardTitle>
                   <CardDescription className="max-w-lg text-balance leading-relaxed">
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus 
                         ut minima beatae error corporis in, dolores qui doloribus tempora.
                   </CardDescription>
                 </CardHeader>
                 <CardFooter>
-                    <Link href={'/dashboard/memder'} className={buttonVariants()}>
+                    <Link href={'/dashboard/members'} className={buttonVariants()}>
                         Add New Member
                     </Link>
                 </CardFooter>

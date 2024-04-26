@@ -32,8 +32,21 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import prisma from "@/lib/prisma"
 
-export default function Dashboard() {
+async function getMembers(){
+    const response = await prisma.member.findMany({
+        take: 5, 
+        orderBy: {
+          createdAt: 'desc'
+        }
+    });    
+    return await response;
+}
+export default async function Dashboard() {
+
+    const data = await getMembers();
+    console.log(data)
   return (
     <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3">
           <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-3">
@@ -56,34 +69,14 @@ export default function Dashboard() {
               </Card>
               <Card x-chunk="dashboard-05-chunk-1">
                 <CardHeader className="pb-2">
-                  <CardDescription>This Week</CardDescription>
-                  <CardTitle className="text-4xl">$1,329</CardTitle>
+                  <CardDescription>Total Members</CardDescription>
+                  <CardTitle className="text-4xl">
+                    {data.length}
+                  </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="text-xs text-muted-foreground">
-                    +25% from last week
-                  </div>
-                </CardContent>
-                <CardFooter>
-                  <Progress value={25} aria-label="25% increase" />
-                </CardFooter>
-              </Card>
-              <Card x-chunk="dashboard-05-chunk-2">
-                <CardHeader className="pb-2">
-                  <CardDescription>This Month</CardDescription>
-                  <CardTitle className="text-4xl">$5,329</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-xs text-muted-foreground">
-                    +10% from last month
-                  </div>
-                </CardContent>
-                <CardFooter>
-                  <Progress value={12} aria-label="12% increase" />
-                </CardFooter>
               </Card>
             </div>
-            <Card x-chunk="dashboard-05-chunk-3">
+            <Card x-chunk="dashboard-05-chunk-3 col">
                   <CardHeader className="px-7">
                     <CardTitle>Members</CardTitle>
                     <CardDescription>
@@ -99,28 +92,25 @@ export default function Dashboard() {
                       </TableHeader>
                       <TableBody>
                         {
-
+                            data.map((member)=>(
+                                <TableRow key={member.id} >
+                                <TableCell>
+                                    <div className="font-medium">{ member.firstName} { member.otherNames} {member.surname}</div>
+                                    <div className="hidden text-sm text-muted-foreground md:inline">
+                                    {member.emailAddress}
+                                    </div>
+                                </TableCell>
+                                <TableCell className="hidden sm:table-cell">
+                                    <Badge className="text-xs" variant="secondary">{member.gender}</Badge>
+                                </TableCell>
+                                <TableCell className="hidden sm:table-cell">
+                                    <Badge className="text-xs" variant="secondary">
+                                        {member.phoneNumber}
+                                    </Badge>
+                                </TableCell>
+                                </TableRow>
+                            ))
                         }
-                        <TableRow className="bg-accent">
-                          <TableCell>
-                            <div className="font-medium">Liam Johnson</div>
-                            <div className="hidden text-sm text-muted-foreground md:inline">
-                              liam@example.com
-                            </div>
-                          </TableCell>
-                          <TableCell className="hidden sm:table-cell">
-                            Sale
-                          </TableCell>
-                          <TableCell className="hidden sm:table-cell">
-                            <Badge className="text-xs" variant="secondary">
-                              Fulfilled
-                            </Badge>
-                          </TableCell>
-                          <TableCell className="hidden md:table-cell">
-                            2023-06-23
-                          </TableCell>
-                          <TableCell className="text-right">$250.00</TableCell>
-                        </TableRow>
                         
                       </TableBody>
                     </Table>

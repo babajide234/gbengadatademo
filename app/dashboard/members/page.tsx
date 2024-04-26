@@ -64,7 +64,7 @@ const Members =  () => {
                             </CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <AddMemberForm/>
+                            <AddMemberForm back={()=> setAdd(!add)}/>
                         </CardContent>
                     </>
                     )

@@ -1,16 +1,13 @@
 'use client'
-
 import AddMemberForm from "@/components/AddMemberForm";
-// import AddMemberForm from "@/components/AddMemberForm";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useQuery } from "@tanstack/react-query";
-import { File, MoreHorizontal, PlusCircle } from "lucide-react";
-import { headers } from "next/headers";
-import { useEffect, useState } from "react";
+import {  MoreHorizontal, PlusCircle } from "lucide-react";
+import {  AwaitedReactNode, JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useState } from "react";
 
 
 const Members =  () => {
@@ -98,7 +95,7 @@ const Members =  () => {
                                 </TableHeader>
                                 <TableBody>
                                     {
-                                        !isLoading && !error && data.map((member)=>(
+                                        !isLoading && !error && data.map((member: { id: Key | null | undefined; title: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; firstName: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; otherName: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; surname: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; gender: string; phoneNumber: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; emailAddress: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined; })=>(
                                             <TableRow key={member.id}>
                                                 <TableCell className="hidden sm:table-cell capitalize">
                                                     {member.title}

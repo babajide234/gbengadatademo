@@ -99,7 +99,7 @@ const AddMemberForm =() => {
                         <div className=" bg-slate-950 px-2 py-2 w-fit text-white rounded-md">
                             <h2 className="">Category(Tick all that apply) </h2>
                         </div>
-                        <div className="  grid grid-cols-2">
+                        <div className="  flex gap-3">
                             <div className="flex items-center space-x-2">
                             <Checkbox id="terms" />
                             <label

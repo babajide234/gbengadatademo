@@ -12,15 +12,8 @@ import {
 } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
-import { Button } from "@/components/ui/button"
+
+import { Button, buttonVariants } from "@/components/ui/button"
 import {
   Card,
   CardContent,
@@ -29,34 +22,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
 
 import { Progress } from "@/components/ui/progress"
-
-import { 
-    Sheet, 
-    SheetContent, 
-    SheetTrigger 
-} from "@/components/ui/sheet"
 
 import {
   Table,
   TableBody,
   TableCell,
-  TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import Sidebar from "@/components/Sidebar"
 
 export default function Dashboard() {
   return (
@@ -74,7 +49,9 @@ export default function Dashboard() {
                   </CardDescription>
                 </CardHeader>
                 <CardFooter>
-                  <Button>Add New Member</Button>
+                    <Link href={'/dashboard/memder'} className={buttonVariants()}>
+                        Add New Member
+                    </Link>
                 </CardFooter>
               </Card>
               <Card x-chunk="dashboard-05-chunk-1">
@@ -121,6 +98,9 @@ export default function Dashboard() {
                         </TableRow>
                       </TableHeader>
                       <TableBody>
+                        {
+
+                        }
                         <TableRow className="bg-accent">
                           <TableCell>
                             <div className="font-medium">Liam Johnson</div>

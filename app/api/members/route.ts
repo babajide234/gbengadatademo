@@ -4,8 +4,8 @@ import { NextResponse } from 'next/server';
  
 export async function GET(request: Request) {
   try {
-    const members = await prisma.member.findMany();
-    return NextResponse.json(members); // Return only the data
+    const members = await prisma.members.findMany();
+    return NextResponse.json(members); 
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: 'Failed to retrieve members' }, { status: 500 });
@@ -17,7 +17,7 @@ export async function POST(request: Request) {
     console.log(newMemberData);
 
     // Create a new member in Prisma
-    const member = await prisma.member.create({
+    const member = await prisma.members.create({
       data: newMemberData,
     });
 

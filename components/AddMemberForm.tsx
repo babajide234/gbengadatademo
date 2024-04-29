@@ -58,20 +58,24 @@ const AddMemberForm =({ back}:{ back: ()=> void}) => {
         mutationFn: createMember, 
         onSuccess: (data : any) => {
           console.log('Member created:', data);
-          toast.success("Member created Successfully")
+        //   toast.success("Member created Successfully")
           back();
           // Handle success scenario (e.g., clear form, show success message)
         },
         onError: (error: any) => {
           console.error('Error creating member:', error);
-          toast.error('Error creating member:', error)
+        //   toast.error('Error creating member:', error)
           // Handle error scenario (e.g., display error message)
         },
     });
     
     const onSubmit = (data: any) => {
-        console.log(data); 
-        mutation.mutate(data);
+        const userId = "clvkseb8v0000wpf5m8nbhfwe"
+
+        // Add userId to data object
+        const updatedData = { ...data, userId };
+      
+        mutation.mutate(updatedData);
     };
 
 
@@ -206,7 +210,7 @@ const AddMemberForm =({ back}:{ back: ()=> void}) => {
                         className="h-12 gap-1" 
                         disabled={mutation.isPending}
                     >
-                        {!mutation.isPending ? (
+                        {mutation.isPending ? (
                             <Loader2 className="animate-spin "/>
                         ) : (
                             <span className="sm:not-sr-only sm:whitespace-nowrap">Add Member</span>

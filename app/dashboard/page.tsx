@@ -33,16 +33,9 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import prisma from "@/lib/prisma"
+import { getMembers } from "@/lib/utils"
 
-async function getMembers(){
-    const response = await prisma.member.findMany({
-        take: 5, 
-        orderBy: {
-          createdAt: 'desc'
-        }
-    });    
-    return await response;
-}
+
 export default async function Dashboard() {
 
     const data = await getMembers();

@@ -12,9 +12,28 @@ import { useEffect, useState } from "react";
 //     return response.json();
 // }
 
+interface MemberData {
+    title: string;
+    surname: string;
+    firstName: string;
+    otherNames?: string; // Optional property
+    gender: string;
+    phoneNumber: string;
+    emailAddress: string;
+    address: string;
+    state: string;
+    lga: string;
+    ward?: string; // Optional property (based on API response)
+    wardCode?: string; // Optional property (based on API response)
+    pollingUnitCode: string;
+    inecVotingCardNumber: string;
+    createdAt: Date;
+    updatedAt: Date;
+  }
+  
 const Profile =  () => {
     const { id } = useParams<{ id: string;}>()
-    const [data, setData] = useState(null);
+    const [data, setData] = useState<MemberData | null>(null);
 
 
     useEffect(() => {

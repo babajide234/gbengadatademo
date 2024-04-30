@@ -11,6 +11,7 @@ export async function GET(request: Request, {params}:{params: any}) {
           id: memberId,
         },
       })
+    console.log(members);
     return NextResponse.json(members); // Return only the data
   } catch (error) {
     console.error(error);

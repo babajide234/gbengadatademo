@@ -85,24 +85,8 @@ const AddMemberForm =({ back}:{ back: ()=> void}) => {
                 <div className=" grid grid-cols-12 gap-3">
                     <div className=" col-span-2 ">
                         <Label >Title</Label>
-                        <Controller 
-                            control={control}
-                            name="title"
-                            render={({ field }) => {
-                            return (
-                                <Select onValueChange={field.onChange} {...field}>
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Title" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="mr">Mr</SelectItem>
-                                        <SelectItem value="mrs">Mrs</SelectItem>
-                                        <SelectItem value="chief">Chief</SelectItem>
-                                        <SelectItem value="bar">Bar</SelectItem>
-                                        <SelectItem value="engr">Engr</SelectItem>
-                                    </SelectContent>
-                                </Select>
-                        )}}></Controller>
+                        <Input {...register('title')}/>
+                        
                     </div>
                     <div className="col-span-3">
                         <Label>Surname</Label>

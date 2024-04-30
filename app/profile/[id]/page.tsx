@@ -3,17 +3,35 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 
-async function getMemberId(id:string) {
-    const response = await fetch(`/api/members/${id}`);
+// async function getMemberId(id:string) {
+//     const response = await fetch(`/api/members/${id}`);
     
-    return response.json();
-}
+//     return response.json();
+// }
 
-const Profile = () => {
+const Profile =  () => {
     const { id } = useParams<{ id: string;}>()
-    const data = getMemberId(id)
+    const [data, setData] = useState(null);
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await fetch(`/api/members/${id}`);
+            const memberData = await response.json();
+            console.log(memberData)
+            setData(memberData);
+          } catch (err) {
+            console.error('Error fetching member data:', err);
+          } finally {
+          }
+        };
+    
+        fetchData();
+      }, [id]);
 
     return (
         <div className=" border border-solid w-[500px] rounded-lg min-h-[300px] overflow-hidden flex flex-col justify-start">
@@ -27,9 +45,35 @@ const Profile = () => {
                 </div>
             </header>
             <main className=" flex flex-col py-10 px-10 ">
-                <div className=" w-full flex flex-col justify-start py-5 items-center">
-                    <h2 className=" capitalize">babajide tomoshegbo</h2>
-                    <p className="">email@email.com</p>
+                <div className=" w-full flex flex-col py-5 items-center">
+                    <div className=" w-full flex justify-between py-5 items-center">
+                        <h2 className=" capitalize">name:</h2>
+                        <p className=" capitalize">{data?.title}{". "}{data?.surname}{" "}{data?.firstName}{" "}{data?.otherNames}</p>
+                    </div>
+                    <Separator/>
+                    <div className=" w-full flex justify-between py-5 items-center">
+                        <h2 className=" capitalize">gender:</h2>
+                        <p className=" capitalize">{data?.gender}</p>
+                    </div>
+                    <Separator/>
+                    <div className=" w-full flex justify-between py-5 items-center">
+                        <h2 className=" capitalize">phone number:</h2>
+                        <p className=" capitalize">{data?.phoneNumber}</p>
+                    </div>
+                    <Separator/>
+                    <div className=" w-full flex justify-between py-5 items-center">
+                        <h2 className=" capitalize">email:</h2>
+                        <p className=" capitalize">{data?.emailAddress}</p>
+                    </div>
+                    <Separator/>
+                    <div className=" w-full flex justify-between py-5 items-center">
+                        <h2 className=" capitalize">address:</h2>
+                        <div className="">
+                            <p className=" capitalize">{data?.address}</p>
+                            <p className=" capitalize">{data?.state}</p>
+                            <p className=" capitalize">{data?.lga}</p>
+                        </div>
+                    </div>
                     <Separator/>
                 </div>
             </main>

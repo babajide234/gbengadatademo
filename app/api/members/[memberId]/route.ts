@@ -6,7 +6,7 @@ export async function GET(request: Request, {params}:{params: any}) {
   try {
     const { memberId } = params;
 
-    const members = await prisma.user.findUnique({
+    const members = await prisma.members.findUnique({
         where: {
           id: memberId,
         },

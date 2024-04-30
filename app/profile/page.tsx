@@ -20,11 +20,11 @@ const Profile = () => {
                 <div className=" w-20 h-20 bg-slate-600 rounded-full absolute -bottom-10 left-10" />
             </header>
             <main className=" flex flex-col py-10 px-10 ">
-                <div className=" w-full flex flex-col justify-start py-5 items-center">
-                    {/* <h2 className=" capitalize">babajide tomoshegbo</h2>
-                    <p className="">email@email.com</p>
-                    <Separator/> */}
+                <div className=" w-full flex justify-between py-5 items-center">
+                    <h2 className=" capitalize"></h2>
+                    <p className=""></p>
                 </div>
+                <Separator/>
             </main>
         </div>
     );

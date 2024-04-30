@@ -40,9 +40,9 @@ export const { handlers: { GET, POST}, auth, signIn, signOut } = NextAuth({
 
                 if (!user) return null;
                 
-                const passwordsMatch = await compare(password, user.password);
-                console.log("pmatch",passwordsMatch)
-                if (passwordsMatch) return user;
+                // const passwordsMatch = await compare(password, user.password);
+                // console.log("pmatch",passwordsMatch)
+                // if (passwordsMatch) return user;
               }
        
               console.log('Invalid credentials');
